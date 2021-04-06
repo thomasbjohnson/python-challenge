@@ -4,6 +4,9 @@ import csv
 #creates the csv path
 csv_path = os.path.join('Resources', 'budget_data.csv')
 
+#specify the text file location to write
+budgettxt = os.path.join("Analysis", "budget.txt")
+
 #create the list to hold the results
 months = []
 net_total = []
@@ -44,9 +47,30 @@ date_max = str(months[pl_change.index(max_pl_change)])
 min_pl_change = min(pl_change)
 date_min = str(months[pl_change.index(min_pl_change)])
 
-
 print(f"Python Challenge")
 print("Financial Analysis")
 print("-------------------------------")
 print("Total Months:  " + str(total_months))
-print(f"Average Change:  $" + str(ave_change))
+#Use {variable:.2f} to print a float to 2 decimal spots
+print(f"Total:  ${total_pl:.2f}")
+print(f"Average Change:  ${ave_change:.2f}")
+#Use {variable:.0f} to print a float to 0 decimal spots
+print(f"Greatest Increase in Profits: {date_max} (${max_pl_change:.0f})")
+print(f"Greatest Decrease in Profits: {date_min} (${min_pl_change:.0f})")
+
+with open(budgettxt, 'w') as writer:
+    writer.write("Python Challenge")
+    writer.write("\n")
+    writer.write("Financial Analysis")
+    writer.write("\n")
+    writer.write("-------------------------------")
+    writer.write("\n")
+    writer.write(f"Total Months: {total_months}")
+    writer.write("\n")  
+    writer.write(f"Total:  ${total_pl:.2f}")
+    writer.write("\n")
+    writer.write(f"Average Change:  ${ave_change:.2f}")
+    writer.write("\n")
+    writer.write(f"Greatest Increase in Profits: {date_max} $({max_pl_change:.0f})")
+    writer.write("\n")
+    writer.write(f"Greatest Decrease in Profits: {date_min} $({min_pl_change:.0f})")
